@@ -1,0 +1,18 @@
+import React from 'react'
+import Book1 from '../assets/read1.png'
+
+const TrendingBook = () => {
+  return (
+    <div className='flex gap-5 w-[351px] h-[172px] border py-2'>
+        <div className='bg-white py-5 px-2 h-full rounded'>
+            <img src={Book1} className='h-full' alt="The number 1 car spotter book" />
+        </div>
+        <div className='flex flex-col justify-center gap-3'>
+          <h3>The No. 1 Car Spotter Goes To School</h3>
+          <p className='text-[#E3A107]'>NGN 15,000</p>
+        </div>
+    </div>
+  )
+}
+
+export default TrendingBook

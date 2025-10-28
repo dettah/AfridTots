@@ -1,0 +1,11 @@
+@font-face {
+  font-family: Cherry;
+  src: url("../src/assets/font/CherryBombOne-Regular.ttf")
+}
+
+@import "tailwindcss";
+
+@theme {
+  --font-cherry: Cherry, cursive, "sans-serif";
+}
+
