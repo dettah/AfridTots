@@ -3,7 +3,7 @@ import Book1 from '../assets/read1.png'
 
 const TrendingBook = () => {
   return (
-    <div className='flex gap-5 w-[351px] h-[172px] border py-2'>
+    <div className='flex gap-5 w-full h-[172px] py-2'>
         <div className='bg-white py-5 px-2 h-full rounded'>
             <img src={Book1} className='h-full' alt="The number 1 car spotter book" />
         </div>
@@ -13,6 +13,6 @@ const TrendingBook = () => {
         </div>
     </div>
   )
-}
+} 
 
 export default TrendingBook

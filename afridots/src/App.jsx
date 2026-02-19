@@ -8,6 +8,11 @@ import Footer from './Components/Footer'
 import Quart from '../src/assets/sector.png'
 import NewsDetail from './Components/NewsDetail'
 import Shop from './Pages/Shop'
+import Book from './Pages/Book'
+import Audio from './Pages/Audio'
+import Product from './Pages/Product'
+import ItemDetails from "./Pages/ItemDetails";
+import AudioItemDetails from "./Pages/AudioItemDetails";
 
 
 function App() {
@@ -34,6 +39,11 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/news/:id" element={<NewsDetail /> } />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/books" element={<Book />} />
+          <Route path="/audio" element={<Audio />} />
+          <Route path='/products' element={<Product />} />
+          <Route path="/item/:id" element={<ItemDetails />} />
+          <Route path="/audio-item/:id" element={<AudioItemDetails />} />
         </Routes>
 
         <Footer />

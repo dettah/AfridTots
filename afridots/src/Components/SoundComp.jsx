@@ -2,63 +2,103 @@ import { useEffect, useRef, useState } from "react"
 import WaveSurfer from "wavesurfer.js"
 import { Play, Pause } from "lucide-react"
 
-const SoundComp = () => {
+const SoundComp = ({
+  audioSrc,
+  title = "Untitled Track",
+  description = "No description available.",
+  description_audio = " ",
+  waveColor = "#ffffff",
+  progressColor = "#f59e0b",
+  buttonColor = "#e11d48", // default red,
+  price = '15,000',
+  display = "none"
+}) => {
+  const waveformRef = useRef(null)
+  const wavesurfer = useRef(null)
+  const [isPlaying, setIsPlaying] = useState(false)
 
-    const waveformRef = useRef(null)
-    const wavesurfer = useRef(null)
-    const [isPlaying, setIsPlaying] = useState(false)
+  useEffect(() => {
+    if (!audioSrc) return
 
-    useEffect(() => {
-        const ws = WaveSurfer.create({
-            container: waveformRef.current,
-            waveColor: "#ffff",
-            progressColor: "#f59e0b",
-            height: 50,
-            responsive: true,
-        })
+    const ws = WaveSurfer.create({
+      container: waveformRef.current,
+      waveColor,
+      progressColor,
+      height: 50,
+      responsive: true,
+      cursorWidth: 1,
+      barWidth: 2,
+      barRadius: 2,
+    })
 
-        ws.load("src/assets//audio/Vid.mp3")
-        wavesurfer.current = ws
+    ws.load(audioSrc)
+    wavesurfer.current = ws
 
-        ws.on("play", () => setIsPlaying(true))
-        ws.on("pause", () => setIsPlaying(false))
+    ws.on("play", () => setIsPlaying(true))
+    ws.on("pause", () => setIsPlaying(false))
 
-        return () => ws.destroy()
-    }, [])
+    return () => ws.destroy()
+  }, [audioSrc, waveColor, progressColor])
 
+  const togglePlay = () => {
+    if (wavesurfer.current) {
+      wavesurfer.current.playPause()
+    }
+  }
 
-
-    return (
-        <div className="flex flex-col items-center gap-4">
-            <div className="flex w-full gap-4  ">
-                <button
-                    onClick={() => wavesurfer.current.playPause()}
-                    className="w-6 h-6 p-1 mt-5 rounded-full bg-red-600 text-white shadow-lg hover:bg-red-700 transition"
-                >
-                    {isPlaying ? <Pause size={15} /> : <Play size={15} />
-                    }
-                </button>
-                <div className="w-full flex flex-col">
-
-                    
-                    {/* // dynamically  price. */}
-                    <div className="h-[64px] flex items-center w-full bg-[#5A6C5E] rounded-xl px-3">
-                        <div ref={waveformRef} className="w-full"></div>
-                    </div>
-                    <div className="bg-transparent" >
-                        <h2 className="text-[20px] font-bold my-5 ">African (My Africa)</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero nesciunt hic dignissimos odio ad rem dolor quisquam, fuga quos laborum.</p>
-                    </div>
-                </div>
-
-            </div>
-            <div>
-
-            </div>
-
+  return (
+    <div className=" items-center gap-4">
+      <div
+        className="flex w-full gap-4">
+        {/* Play / Pause Button */}
+        <div
+        className=" h-fit"
+          onClick={(e) => {
+            e.stopPropagation();
+            console.log("add to cart");
+          }}
+        >
+          <button
+            onClick={togglePlay}
+            style={{ backgroundColor: buttonColor }}
+            className="w-6 h-6 p-1 mt-5 cursor-pointer rounded-full text-white shadow-lg hover:opacity-90 transition"
+          >
+            {isPlaying ? <Pause size={15} /> : <Play size={15} />}
+          </button>
         </div>
-    )
+
+        {/* Waveform + Text */}
+        <div className="w-full flex flex-col">
+          <div className="h-[64px] flex items-center w-full bg-[#5A6C5E] rounded-xl px-3">
+            <div
+            onClick={(e) => {
+              e.stopPropagation();
+              console.log("add to cart");
+            }}
+            ref={waveformRef} className="w-full"></div>
+          </div>
+
+          <div className="bg-transparent">
+            <h2 className="text-[20px] font-bold my-3">{title}</h2>
+            <p className="text-gray-300">{description}</p>
+            <p className="text-black">{description_audio}</p>
+            <p className='text-[#E3A107]'>NGN {price}</p>
+
+          </div>
+          <div className="text-right " style={{ display: display }}  >
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                console.log("add to cart");
+              }}
+              className="border-2 border-[#E3A107] rounded-full px-6 py-1"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
-
 export default SoundComp
-

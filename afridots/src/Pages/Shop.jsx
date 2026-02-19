@@ -10,10 +10,12 @@ import Hdphn1 from '../assets/shop/HeadPhone1.png'
 import BP from '../assets/shop/bagpack.png'
 import shop from '../assets/shop/shopcloth.png'
 import SHKt from '../assets/shop/superherokt.png'
+import TrendingImg from '../assets/newsletterbg.png'
+
 import VertShopComp from '../Components/VertShopComp'
 import HorShopComp from '../Components/HorShopComp'
-import TrendingImg from '../assets/newsletterbg.png'
 import Trending from '../Components/Trending'
+import Explore from '../Components/Explore'
 
 const Shop = () => {
     return (
@@ -128,14 +130,21 @@ const Shop = () => {
 
             </section>
 
-            {/*  */}
-            <div className='overflow-hidden relative h-fit w-full border '>
-{/* Setup component to recieve price and the others dynamically */}
-                <img src={TrendingImg} className='absolute -top-10 -right-5 -left-5 -bottom-2 w-full h-[120%] -z-10' alt="stripped background " />
-                <div className='z-10'>
+            {/* Trending Section */}
+            <div className='overflow-hidden relative h-fit w-full py-20 my-12'>
+                {/* Setup component to recieve price and the others dynamically */}
+                <img src={TrendingImg} className='absolute -top-10 left-0 border -bottom-2 h-[120%] -z-10' alt="stripped background" />
 
+                <div className='z-10 px-4 sm:px-10 md:px-20'>
                     <Trending />
                 </div>
+
+            </div>
+            {/* Explore Image */}
+            <div className='my-5 px-4 sm:px-10 md:px-20'>
+
+                <Explore />
+
 
             </div>
         </>
